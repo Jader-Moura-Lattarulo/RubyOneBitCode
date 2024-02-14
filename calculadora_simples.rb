@@ -1,11 +1,13 @@
 puts "Bem-vindo(a) a calculadora"
 resposta_usuario = ""
-
+numbers = []
+potencia = ""
 begin
     
     puts "O que você deseja fazer? "
-    puts "Fazer um calculo->\t1"
-    puts "Sair\t\t->\t2"
+    puts "Fazer um calculo  ->\t1"
+    puts "Fazer potênciação ->\t2"
+    puts "Sair\t\t  ->\t3"
     print "Digite sua opção: "
     resposta_usuario = gets.chomp.to_i
 
@@ -54,9 +56,32 @@ begin
             end
 
         elsif resposta_usuario == 2
+            
+            system('cls') || system('clear')
+            puts "Você escolheu opção: #{resposta_usuario}"
+            print "A qual potência você quer elevar? "
+            potencia = gets.chomp.to_i
+            print "\nDigite o primeiro número inteiro: "
+            numbers.push (gets.chomp.to_i)
+            print "Digite o segundo número inteiro: "
+            numbers.push (gets.chomp.to_i)
+            print "Digite o terceiro número inteiro: "
+            numbers.push (gets.chomp.to_i)
+            system('cls') || system('clear')
+            puts "Você escolheu os números #{numbers[0..-2].join(', ')} e #{numbers.last} que elevados a #{potencia} potência temos:"
+
+            numbers.each_with_index do |number, index|
+                print "#{number ** potencia}"
+                print ", " unless index == numbers.length - 1
+            end
+
+            puts "."
+            puts
+        
+        elsif resposta_usuario == 3
             puts "Muito bem, até a próxima!"
         
         else
             puts "Por favor, insira uma resposta válida:"
         end
-end while resposta_usuario != 2
+end while resposta_usuario != 3
