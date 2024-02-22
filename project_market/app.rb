@@ -1,5 +1,3 @@
-#app.rb
-
 require_relative 'manager.rb'
 require_relative 'products.rb'
 

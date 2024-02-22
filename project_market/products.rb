@@ -1,5 +1,3 @@
-#products
-
 require 'csv'
 
 class Product
@@ -23,9 +21,7 @@ class Product
     name = gets.chomp
 
     while product_manager.duplicate_check(name)
-      puts "Já existe um produto com esse nome. Tente novamente."
-      print "Nome: "
-      name = gets.chomp
+      
     end
 
     print "Preço: R$"
