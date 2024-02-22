@@ -1,27 +1,23 @@
+#app.rb
+
 require_relative 'manager.rb'
-require_relative 'stock.rb'
+require_relative 'products.rb'
 
 product_manager = ProductManager.new
-stock = Stock.new(product_manager)
 
 loop do
   puts "1. Adicionar Produto"
   puts "2. Exibir Todos os Produtos"
-  puts "3. Exibir Estoque"
-  puts "4. Sair"
+  puts "3. Sair"
   print "Escolha uma opção: "
   choice = gets.chomp.to_i
 
   case choice
   when 1
-    new_product = stock.add_product(product, quantity)  
-    product_manager.add_product(new_product) if new_product
-    stock.update_inventory
+    new_product = product_manager.add_product
   when 2
     product_manager.display_all_products
   when 3
-    stock.display_inventory
-  when 4
     puts "Saindo do programa. Adeus!"
     break
   else
