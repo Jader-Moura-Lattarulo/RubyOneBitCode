@@ -11,9 +11,8 @@ class ProductManager
   end
 
   def add_product
-    product = Product.product_registration(self)
+    product = product_registration
     @products << product
-    Product.add_product_registration(product)
     puts "Produto #{product.name} adicionado com sucesso!\n\n"
     product
   end
@@ -27,6 +26,10 @@ class ProductManager
         product.display_info
       end
     end
+  end
+
+  def find_product_by_name(name)
+    @products.find { |product| product.name.downcase == name.downcase }
   end
 
   def product_registration
@@ -58,9 +61,6 @@ class ProductManager
 
         # Adicionar o novo produto à lista
         @products << new_product
-
-        # Adicionar ao arquivo CSV (se necessário)
-        Product.add_product_registration(new_product)
 
         puts "Novo produto #{new_product.name} adicionado com sucesso!\n\n"
 

@@ -1,3 +1,4 @@
+require 'csv'
 todos = []
 
 def print_menu
@@ -5,6 +6,7 @@ def print_menu
     puts "[S]ee all TODOs"
     puts "[A]dd a TODO"
     puts "[R]emove a TODO"
+    puts "[D]ownload TODOs as CSV"
     puts "[E]xit"
 end
 
@@ -19,10 +21,29 @@ def process_user_choice(choice, todos)
     when "r"
         print_selected_option("Remove a TODO")
         remove_todo(todos)
+    when "d"
+        print_selected_option("Download TODOs as CSV")
+        download_csv(todos)
     when "e"
         print_selected_option("Exit")
         puts "Press any key to close."
         gets.chomp
+    end
+end
+
+def download_csv(todos)
+    if todos.empty?
+        puts "No TODOs to export, please add a TODO before download as a CSV"
+    else
+        puts "Enter the CSV file name (without extension):"
+        file_name = gets.chomp
+        csv_file = "#{file_name}.csv"
+
+        ::CSV.open(csv_file, 'w') do |csv|
+            todos.each { |todo| csv << [todo] }
+        end
+        
+        puts "TODOs successfully exported to #{csv_file}\n"
     end
 end
 
@@ -82,7 +103,7 @@ loop do
     user_choice = gets.chomp.downcase
     system("clear") || system("cls")
 
-    valid_choices = ["s", "a", "r", "e"]
+    valid_choices = ["s", "a", "r", "d", "e"]
 
     if valid_choices.include?(user_choice)
         process_user_choice(user_choice, todos)

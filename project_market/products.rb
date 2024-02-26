@@ -1,3 +1,5 @@
+#products.rb
+
 require 'csv'
 
 class Product
@@ -20,10 +22,8 @@ class Product
     print "Nome: "
     name = gets.chomp
 
-    while product_manager.duplicate_check(name)
-      
-    end
-
+   duplicate_check(name)
+    
     print "Preço: R$"
     price = gets.chomp.to_f
     print "Categoria: "
